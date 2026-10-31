@@ -1,0 +1,191 @@
+{
+  "manifest": {
+    "exp_id": "open_b1",
+    "dataset": "scifact_open",
+    "system": "b1",
+    "eval_set": "scifact_open",
+    "n": 278,
+    "profile": "qwen3_8b_vllm",
+    "llm": {
+      "backend": "openai",
+      "model": "Qwen/Qwen3-8B",
+      "revision": "4da05a8edb55c6046cce958586c33b61da07bb79",
+      "base_url": "http://localhost:8000/v1",
+      "temperature": 0.0,
+      "top_p": 1.0,
+      "max_tokens": 512,
+      "seed": 13,
+      "extra": {
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        },
+        "structured_output": true
+      }
+    },
+    "base_url": "http://localhost:34091/v1",
+    "retriever": "hybrid_bm25_bge_base",
+    "evidence_budget_abstracts": 5,
+    "policy": "scifact_v1",
+    "system_params": {
+      "m2_rounds": 2,
+      "m2_new_per_round": 2,
+      "sc_samples": 4,
+      "sc_temperature": 0.7,
+      "seed": 13,
+      "m2_consolidate": true,
+      "m2_followup": "fused",
+      "rrf_k": 60
+    },
+    "git_commit": "unknown",
+    "git_dirty": null,
+    "code_sha256": "eb32b27c64233372",
+    "workers": 24,
+    "python": "3.11.18",
+    "platform": "Linux-5.15.0-194-generic-x86_64-with-glibc2.35",
+    "run_utc": "2026-10-29T19:58:14.203467+00:00",
+    "wall_clock_s": 378.5,
+    "predictions": "to_transfer/open/predictions/open_b1.jsonl"
+  },
+  "metrics": {
+    "claim_level": {
+      "n": 278,
+      "macro_f1": 0.8125,
+      "accuracy": 0.8129,
+      "invalid_predictions": 0,
+      "per_class": {
+        "SUPPORTS": {
+          "precision": 0.837,
+          "recall": 0.7938,
+          "f1": 0.8148,
+          "support": 97
+        },
+        "REFUTES": {
+          "precision": 0.7757,
+          "recall": 0.8646,
+          "f1": 0.8177,
+          "support": 96
+        },
+        "NEI": {
+          "precision": 0.8354,
+          "recall": 0.7765,
+          "f1": 0.8049,
+          "support": 85
+        }
+      },
+      "confusion_matrix": {
+        "labels": [
+          "SUPPORTS",
+          "REFUTES",
+          "NEI",
+          "__invalid__"
+        ],
+        "matrix": [
+          [
+            77,
+            12,
+            8,
+            0
+          ],
+          [
+            8,
+            83,
+            5,
+            0
+          ],
+          [
+            7,
+            12,
+            66,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "macro_f1_ci95": [
+        0.7653,
+        0.856
+      ]
+    },
+    "safety": {
+      "unsupported_verdict_rate": 0.2235,
+      "false_supports_on_nei": 0.0824,
+      "false_refutes_on_nei": 0.1412,
+      "polarity_error_rate": 0.1036,
+      "ungrounded_verdict_rate": 0.0,
+      "invalid_rate": 0.0,
+      "n_gold_nei": 85,
+      "n_verdicts": 199
+    },
+    "abstract_level": {
+      "label_only": {
+        "precision": 0.6434,
+        "recall": 0.6767,
+        "f1": 0.6597,
+        "tp": 157,
+        "n_pred": 244,
+        "n_gold": 232
+      },
+      "label_rationale": null,
+      "note": "rationale sets are merged in this test set; only label-only is scored"
+    },
+    "sentence_level": {
+      "selection_label": {
+        "precision": 0.469,
+        "recall": 0.3886,
+        "f1": 0.425,
+        "tp": 136,
+        "n_pred": 290,
+        "n_gold": 350
+      },
+      "selection_only": {
+        "precision": 0.5103,
+        "recall": 0.4229,
+        "f1": 0.4625,
+        "tp": 148,
+        "n_pred": 290,
+        "n_gold": 350
+      },
+      "criterion": "per sentence; citation evidence only (merged rationale sets)"
+    },
+    "evidence": {
+      "n_claims_with_evidence": 193,
+      "gold_abstract_recall": 0.9107,
+      "all_gold_shown": 0.886,
+      "rationale_sentence_coverage": 0.914,
+      "abstracts_shown_mean": 5.0
+    },
+    "strata": {
+      "gold_abstract_shown": {
+        "n": 180,
+        "accuracy": 0.85
+      },
+      "gold_abstract_missed": {
+        "n": 13,
+        "accuracy": 0.5385
+      },
+      "gold_nei": {
+        "n": 85,
+        "accuracy": 0.7765
+      }
+    },
+    "robustness": {
+      "minimal_pairs": 40,
+      "pair_accuracy": 0.625,
+      "contrast_pairs": 24,
+      "contrast_consistency": 0.7917
+    }
+  },
+  "cost": {
+    "calls_per_claim": 1.0,
+    "prompt_tokens_per_claim": 2305.5,
+    "completion_tokens_per_claim": 103.7,
+    "call_errors": 0,
+    "invalid_citations": 1,
+    "wall_s_per_claim_mean": 31.88
+  }
+}

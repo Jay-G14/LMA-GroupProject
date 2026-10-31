@@ -1,0 +1,14 @@
+numpy==2.4.6
+pandas==3.0.5
+scipy==1.17.1
+scikit-learn==1.9.1
+matplotlib==3.11.1
+PyYAML==6.0.3
+jsonschema==4.26.0
+httpx==0.28.1
+pytest==9.1.1
+# local HF backend / dense retrieval (optional on a vLLM setup)
+torch==2.14.0
+transformers==5.19.0
+sentence-transformers==6.1.0
+# GPU server only: vllm (version pinned when the cluster environment is set up)

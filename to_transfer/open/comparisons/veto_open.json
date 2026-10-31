@@ -1,0 +1,103 @@
+{
+  "n_claims": 278,
+  "b1_answers": 199,
+  "b1_wrong_answers": 39,
+  "b1_error_rate": 0.196,
+  "b1_macro_f1": 0.8125,
+  "b1_unsupported": 0.2235,
+  "checks": {
+    "M1": {
+      "run": "open_b1_checked",
+      "vetoes": 29,
+      "vetoed_wrong": 13,
+      "veto_precision": 0.4483,
+      "p_veto_precision": 0.000668,
+      "vetoed_right_lost": 16,
+      "vetoed_gold_nei": 6,
+      "macro_f1": 0.7758,
+      "unsupported": 0.1529,
+      "random_macro_f1": [
+        0.7393,
+        0.7196,
+        0.763
+      ],
+      "random_unsupported": [
+        0.1911,
+        0.1529,
+        0.2235
+      ],
+      "share_random_at_least_as_good_f1": 0.0015,
+      "share_random_at_least_as_safe": 0.0383
+    },
+    "M1-anch": {
+      "run": "open_b1_checked_anch",
+      "vetoes": 45,
+      "vetoed_wrong": 16,
+      "veto_precision": 0.3556,
+      "p_veto_precision": 0.003103,
+      "vetoed_right_lost": 29,
+      "vetoed_gold_nei": 8,
+      "macro_f1": 0.7398,
+      "unsupported": 0.1294,
+      "random_macro_f1": [
+        0.6998,
+        0.6745,
+        0.7278
+      ],
+      "random_unsupported": [
+        0.1728,
+        0.1294,
+        0.2118
+      ],
+      "share_random_at_least_as_good_f1": 0.0024,
+      "share_random_at_least_as_safe": 0.0395
+    },
+    "B2": {
+      "run": "open_b1_checked_b2",
+      "vetoes": 24,
+      "vetoed_wrong": 15,
+      "veto_precision": 0.625,
+      "p_veto_precision": 1e-06,
+      "vetoed_right_lost": 9,
+      "vetoed_gold_nei": 3,
+      "macro_f1": 0.7918,
+      "unsupported": 0.1882,
+      "random_macro_f1": [
+        0.7517,
+        0.7337,
+        0.7734
+      ],
+      "random_unsupported": [
+        0.1967,
+        0.1647,
+        0.2235
+      ],
+      "share_random_at_least_as_good_f1": 0.0002,
+      "share_random_at_least_as_safe": 0.4046
+    },
+    "B1-9": {
+      "run": "open_b1_checked_b1_9",
+      "vetoes": 15,
+      "vetoed_wrong": 8,
+      "veto_precision": 0.5333,
+      "p_veto_precision": 0.002494,
+      "vetoed_right_lost": 7,
+      "vetoed_gold_nei": 2,
+      "macro_f1": 0.7943,
+      "unsupported": 0.2,
+      "random_macro_f1": [
+        0.7744,
+        0.7588,
+        0.7917
+      ],
+      "random_unsupported": [
+        0.2065,
+        0.1765,
+        0.2235
+      ],
+      "share_random_at_least_as_good_f1": 0.0226,
+      "share_random_at_least_as_safe": 0.4347
+    }
+  },
+  "sc_unanimous_vetoes": 8
+}

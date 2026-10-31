@@ -1,0 +1,1 @@
+model: /home2/jayant.g/LMA-Project/.hf/hub/models--Qwen--Qwen3-8B-AWQ/snapshots/4da05a8edb55c6046cce958586c33b61da07bb79

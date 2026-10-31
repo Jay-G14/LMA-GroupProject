@@ -1,0 +1,7 @@
+id_a,split_a,id_b,split_b,cosine
+phdd5a28435e,train,ph17072a44ba,dev,0.9999999999999999
+phb01835a6fc,train,ph7ca68dceb9,test,1.0
+ph76c4392362,train,phacc2824736,test,1.0000000000000002
+ph66501cd3ff,train,phb27dd863a9,dev,0.9648318451124713
+ph439536e5bd,dev,ph35589da7cc,test,1.0
+phb38334520b,dev,phdc7fadaf10,test,0.9122245134057596

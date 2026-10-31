@@ -1,0 +1,264 @@
+{
+  "manifest": {
+    "exp_id": "pilot_m1",
+    "dataset": "scifact",
+    "system": "m1",
+    "eval_set": "prompt_dev",
+    "n": 199,
+    "profile": "qwen3_8b_vllm",
+    "llm": {
+      "backend": "openai",
+      "model": "Qwen/Qwen3-8B",
+      "revision": "4da05a8edb55c6046cce958586c33b61da07bb79",
+      "base_url": "http://localhost:8000/v1",
+      "temperature": 0.0,
+      "top_p": 1.0,
+      "max_tokens": 512,
+      "seed": 13,
+      "extra": {
+        "chat_template_kwargs": {
+          "enable_thinking": false
+        },
+        "structured_output": true
+      }
+    },
+    "base_url": "http://localhost:36425/v1",
+    "retriever": "hybrid_bm25_bge_base",
+    "evidence_budget_abstracts": 5,
+    "policy": "scifact_v1",
+    "system_params": {
+      "m2_rounds": 2,
+      "m2_new_per_round": 2,
+      "sc_samples": 5,
+      "sc_temperature": 0.7,
+      "seed": 13,
+      "m2_consolidate": true,
+      "m2_followup": "fused",
+      "rrf_k": 60
+    },
+    "git_commit": "unknown",
+    "git_dirty": null,
+    "code_sha256": "8551d99bf7fb3f4f",
+    "workers": 24,
+    "python": "3.11.18",
+    "platform": "Linux-5.15.0-194-generic-x86_64-with-glibc2.35",
+    "run_utc": "2026-10-29T21:47:53.991989+00:00",
+    "wall_clock_s": 1294.9,
+    "predictions": "to_transfer/pilot/predictions/pilot_m1.jsonl"
+  },
+  "metrics": {
+    "claim_level": {
+      "n": 199,
+      "macro_f1": 0.736,
+      "accuracy": 0.7387,
+      "invalid_predictions": 0,
+      "per_class": {
+        "SUPPORTS": {
+          "precision": 0.7857,
+          "recall": 0.7333,
+          "f1": 0.7586,
+          "support": 75
+        },
+        "REFUTES": {
+          "precision": 0.5957,
+          "recall": 0.9032,
+          "f1": 0.7179,
+          "support": 31
+        },
+        "NEI": {
+          "precision": 0.7805,
+          "recall": 0.6882,
+          "f1": 0.7314,
+          "support": 93
+        }
+      },
+      "confusion_matrix": {
+        "labels": [
+          "SUPPORTS",
+          "REFUTES",
+          "NEI",
+          "__invalid__"
+        ],
+        "matrix": [
+          [
+            55,
+            5,
+            15,
+            0
+          ],
+          [
+            0,
+            28,
+            3,
+            0
+          ],
+          [
+            15,
+            14,
+            64,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "macro_f1_ci95": [
+        0.669,
+        0.7963
+      ]
+    },
+    "safety": {
+      "unsupported_verdict_rate": 0.3118,
+      "false_supports_on_nei": 0.1613,
+      "false_refutes_on_nei": 0.1505,
+      "polarity_error_rate": 0.0472,
+      "ungrounded_verdict_rate": 0.0,
+      "invalid_rate": 0.0,
+      "n_gold_nei": 93,
+      "n_verdicts": 117
+    },
+    "abstract_level": {
+      "label_only": {
+        "precision": 0.4756,
+        "recall": 0.65,
+        "f1": 0.5493,
+        "tp": 78,
+        "n_pred": 164,
+        "n_gold": 120
+      },
+      "label_rationale": {
+        "precision": 0.4146,
+        "recall": 0.5667,
+        "f1": 0.4789,
+        "tp": 68,
+        "n_pred": 164,
+        "n_gold": 120
+      },
+      "label_rationale_uncapped": {
+        "precision": 0.4146,
+        "recall": 0.5667,
+        "f1": 0.4789,
+        "tp": 68,
+        "n_pred": 164,
+        "n_gold": 120
+      }
+    },
+    "sentence_level": {
+      "selection_label": {
+        "precision": 0.2965,
+        "recall": 0.4232,
+        "f1": 0.3487,
+        "tp": 102,
+        "n_pred": 344,
+        "n_gold": 241
+      },
+      "selection_only": {
+        "precision": 0.311,
+        "recall": 0.444,
+        "f1": 0.3658,
+        "tp": 107,
+        "n_pred": 344,
+        "n_gold": 241
+      },
+      "criterion": "official: complete gold rationale sets"
+    },
+    "evidence": {
+      "n_claims_with_evidence": 106,
+      "gold_abstract_recall": 0.9528,
+      "all_gold_shown": 0.9528,
+      "rationale_sentence_coverage": 0.9528,
+      "abstracts_shown_mean": 5.0
+    },
+    "strata": {
+      "gold_abstract_shown": {
+        "n": 101,
+        "accuracy": 0.8218
+      },
+      "gold_abstract_missed": {
+        "n": 5,
+        "accuracy": 0.0
+      },
+      "gold_nei": {
+        "n": 93,
+        "accuracy": 0.6882
+      },
+      "by_obligations": {
+        "1-2": {
+          "n": 7,
+          "accuracy": 0.4286
+        },
+        "3": {
+          "n": 121,
+          "accuracy": 0.7273
+        },
+        "4": {
+          "n": 63,
+          "accuracy": 0.8254
+        },
+        "5-6": {
+          "n": 8,
+          "accuracy": 0.5
+        }
+      }
+    },
+    "robustness": {
+      "minimal_pairs": 63,
+      "pair_accuracy": 0.6984,
+      "contrast_pairs": 26,
+      "contrast_consistency": 0.9231
+    },
+    "ledger": {
+      "obligations_per_claim": 3.3668,
+      "obligation_count_distribution": {
+        "2": 7,
+        "3": 121,
+        "4": 63,
+        "5": 7,
+        "6": 1
+      },
+      "planner_failure_rate": 0.0,
+      "duplicates_dropped": 0,
+      "type_counts": {
+        "outcome": 210,
+        "population": 40,
+        "scope": 4,
+        "subject": 202,
+        "relation": 193,
+        "timepoint": 14,
+        "comparator": 7
+      },
+      "status_counts_core": {
+        "UNSUPPORTED": 199,
+        "CONTRADICTED": 115,
+        "SATISFIED": 259,
+        "PARTIAL": 32
+      },
+      "status_counts_qualifier": {
+        "UNSUPPORTED": 19,
+        "SATISFIED": 36,
+        "CONTRADICTED": 6,
+        "PARTIAL": 4
+      },
+      "verdict_reasons": {
+        "a core obligation is not satisfied": 80,
+        "an obligation is contradicted": 47,
+        "all core obligations satisfied in one abstract": 70,
+        "core obligations satisfied only across different abstracts": 2
+      },
+      "resolving_citations_on_gold_abstract": 0.5615,
+      "resolving_cited_sentences_in_gold_rationale": 0.5886
+    }
+  },
+  "cost": {
+    "calls_per_claim": 4.367,
+    "prompt_tokens_per_claim": 8079.7,
+    "completion_tokens_per_claim": 489.8,
+    "call_errors": 0,
+    "invalid_citations": 0,
+    "wall_s_per_claim_mean": 220.38
+  }
+}

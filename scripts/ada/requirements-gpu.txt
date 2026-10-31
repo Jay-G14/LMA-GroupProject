@@ -1,0 +1,16 @@
+# Environment for the Ada jobs (Python 3.11 conda prefix env at .venv, built by setup_env.sh).
+# vLLM 0.9.2 still has the V0 engine (xformers attention), which Turing GPUs (RTX 2080 Ti, compute 7.5) need.
+# Pins: vLLM 0.9.2 breaks with transformers >= 4.54 ('aimv2' config clash) and 5.x; sentence-transformers 6.x
+# needs transformers 5, so it is held at 5.1.
+vllm==0.9.2
+transformers==4.53.2
+tokenizers>=0.21,<0.22
+huggingface_hub>=0.33,<1.0
+sentence-transformers==5.1.0
+scikit-learn
+scipy
+pyyaml
+jsonschema
+httpx
+pandas
+hf_transfer             # parallel model downloads from Hugging Face

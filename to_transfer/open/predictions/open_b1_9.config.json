@@ -1,0 +1,44 @@
+{
+  "system": "b1_9",
+  "eval_set": "scifact_open",
+  "profile": {
+    "backend": "openai",
+    "model": "Qwen/Qwen3-8B",
+    "revision": "4da05a8edb55c6046cce958586c33b61da07bb79",
+    "base_url": "http://localhost:8000/v1",
+    "temperature": 0.0,
+    "top_p": 1.0,
+    "max_tokens": 512,
+    "seed": 13,
+    "extra": {
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "structured_output": true
+    }
+  },
+  "retriever": "hybrid_bm25_bge_base",
+  "budget": 5,
+  "policy": "scifact_v1",
+  "m2_rounds": 2,
+  "m2_new_per_round": 2,
+  "sc_samples": 4,
+  "sc_temperature": 0.7,
+  "seed": 13,
+  "m2_consolidate": true,
+  "m2_followup": "fused",
+  "rrf_k": 60,
+  "prompt_versions": {
+    "B0_VERSION": "sf-b0-v2",
+    "B1_VERSION": "sf-b1-v4",
+    "B2_DECOMP_VERSION": "sf-b2-decomp-v1",
+    "B2_VERDICT_VERSION": "sf-b2-verdict-v4",
+    "PLANNER_VERSION": "sf-planner-v2",
+    "AUDITOR_VERSION": "sf-auditor-v4",
+    "FACTS_VERSION": "sf-facts-v1",
+    "REQUERY_VERSION": "sf-requery-v1",
+    "CLAIM_REQUERY_VERSION": "sf-claim-requery-v1",
+    "B1_ITER_VERSION": "sf-b1-iter-v4",
+    "AGGREGATE_VERSION": "sf-aggregate-v2"
+  }
+}

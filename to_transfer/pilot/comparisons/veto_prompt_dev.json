@@ -1,0 +1,103 @@
+{
+  "n_claims": 199,
+  "b1_answers": 127,
+  "b1_wrong_answers": 40,
+  "b1_error_rate": 0.315,
+  "b1_macro_f1": 0.7287,
+  "b1_unsupported": 0.3548,
+  "checks": {
+    "M1": {
+      "run": "pilot_b1_checked",
+      "vetoes": 24,
+      "vetoed_wrong": 14,
+      "veto_precision": 0.5833,
+      "p_veto_precision": 0.002401,
+      "vetoed_right_lost": 10,
+      "vetoed_gold_nei": 10,
+      "macro_f1": 0.7345,
+      "unsupported": 0.2473,
+      "random_macro_f1": [
+        0.6735,
+        0.633,
+        0.7143
+      ],
+      "random_unsupported": [
+        0.2878,
+        0.2473,
+        0.3226
+      ],
+      "share_random_at_least_as_good_f1": 0.002,
+      "share_random_at_least_as_safe": 0.0495
+    },
+    "M1-anch": {
+      "run": "pilot_b1_checked_anch",
+      "vetoes": 26,
+      "vetoed_wrong": 16,
+      "veto_precision": 0.6154,
+      "p_veto_precision": 0.000384,
+      "vetoed_right_lost": 10,
+      "vetoed_gold_nei": 11,
+      "macro_f1": 0.7428,
+      "unsupported": 0.2366,
+      "random_macro_f1": [
+        0.668,
+        0.6269,
+        0.7101
+      ],
+      "random_unsupported": [
+        0.2823,
+        0.2366,
+        0.3226
+      ],
+      "share_random_at_least_as_good_f1": 0.0002,
+      "share_random_at_least_as_safe": 0.0316
+    },
+    "B2": {
+      "run": "pilot_b1_checked_b2",
+      "vetoes": 14,
+      "vetoed_wrong": 10,
+      "veto_precision": 0.7143,
+      "p_veto_precision": 0.001391,
+      "vetoed_right_lost": 4,
+      "vetoed_gold_nei": 5,
+      "macro_f1": 0.7328,
+      "unsupported": 0.3011,
+      "random_macro_f1": [
+        0.6973,
+        0.6661,
+        0.7302
+      ],
+      "random_unsupported": [
+        0.3158,
+        0.2796,
+        0.3441
+      ],
+      "share_random_at_least_as_good_f1": 0.0165,
+      "share_random_at_least_as_safe": 0.2756
+    },
+    "B1-9": {
+      "run": "pilot_b1_checked_b1_9",
+      "vetoes": 8,
+      "vetoed_wrong": 4,
+      "veto_precision": 0.5,
+      "p_veto_precision": 0.215786,
+      "vetoed_right_lost": 4,
+      "vetoed_gold_nei": 1,
+      "macro_f1": 0.7105,
+      "unsupported": 0.3441,
+      "random_macro_f1": [
+        0.7112,
+        0.6887,
+        0.7367
+      ],
+      "random_unsupported": [
+        0.3323,
+        0.3011,
+        0.3548
+      ],
+      "share_random_at_least_as_good_f1": 0.5214,
+      "share_random_at_least_as_safe": 0.9198
+    }
+  },
+  "sc_unanimous_vetoes": 0
+}

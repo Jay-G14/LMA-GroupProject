@@ -1,0 +1,29 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+results/cache/
+results/logs/
+data/processed/
+# cluster runs (scripts/ada): environment, weights, logs and response caches stay out of git;
+# predictions, metrics and comparisons in to_transfer/ are kept
+.venv/
+.hf/
+logs/
+to_transfer/*/cache/
+# comparisons made while the test runs were still going, replaced by <set>.json / <set>.md
+to_transfer/*/comparisons/prelim_*
+# dry runs with the scripted stand-in model (--profile mock*): their scores mean nothing
+results/predictions/smoke*
+results/metrics/smoke*
+results/comparisons/smoke*
+# the annotators' answer key (the model's statuses) stays out of git until both have finished labelling
+annotation/*/key.json
+# working notes kept locally, not part of the project
+detailed_explanation.md
+docs/PROJECT_STATUS.md
+docs/PROJECT_AUDIT.md
+docs/LITERATURE_REVIEW.md
+reports/dataset_audit.md
+# OS files
+._*
+.DS_Store

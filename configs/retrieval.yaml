@@ -1,0 +1,24 @@
+pubhealth:
+  corpus_splits: [train, dev, test]   # pooled article corpus; see docs/EXPERIMENT_PROTOCOL.md
+  mask_verdict_sentences: true
+  sentences_per_passage: 4
+  stride: 4
+  bm25: {k1: 0.9, b: 0.4}
+  evidence_budget_passages: 5         # B1/M1 per-claim budget (draft; frozen at Gate 3)
+
+scifact:
+  retriever: hybrid_bm25_bge_base    # proposal D3; local CPU smoke runs may pass --retriever hybrid_bm25_minilm
+  unit: abstract                      # title + all sentences; sentence ids preserved for citations
+  corpus: data/raw/scifact/data/corpus.jsonl   # 5,183 abstracts
+  development_set: prompt_dev         # leak-free split, data/splits/scifact_leakfree_v1.json (amendment 2)
+  held_out_sets: [dev, scifact_open]  # claims_dev (300) + SciFact-Open labels for the hidden test claims (278)
+  bm25: {k1: 0.9, b: 0.4}
+  dense:
+    model: BAAI/bge-base-en-v1.5      # proposal choice (downloaded on the GPU server)
+    fallback_model: sentence-transformers/all-MiniLM-L6-v2   # local smoke runs only
+    query_prefix: "Represent this sentence for searching relevant passages: "   # BGE only
+    max_seq_length: 512
+  hybrid: {method: rrf, rrf_k: 60, depth: 100}
+  pooling: rrf                        # B2 / M1 / M2 fuse their per-query rankings by RRF (proposal D3; amendment 2)
+  evidence_budget_abstracts: 5        # B1/B2/M1
+  m2_extra: {rounds: 2, new_abstracts_per_round: 2}   # B1-9 therefore gets 9

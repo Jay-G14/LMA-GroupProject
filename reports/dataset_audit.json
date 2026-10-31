@@ -1,0 +1,930 @@
+{
+  "dataset": "PUBHEALTH",
+  "files": {
+    "train": {
+      "path": "data/PUBHEALTH/train.tsv",
+      "sha256": "9d8351355be3bc6303ff4a3041a930faf5d0a8cecc07c02adca9c693f6be18fc",
+      "bytes": 53868630
+    },
+    "dev": {
+      "path": "data/PUBHEALTH/dev.tsv",
+      "sha256": "a9fccabf9e615d1c6a78bb6d79412ecb3addb5c5f500afa9a9e29f9d87149563",
+      "bytes": 6629458
+    },
+    "test": {
+      "path": "data/PUBHEALTH/test.tsv",
+      "sha256": "3c1b84643f20904fed4ef17e25cedc0061d5741df657495bf3164642a8181ae3",
+      "bytes": 6807472
+    }
+  },
+  "splits": {
+    "train": {
+      "rows_parsed": 9832,
+      "rows_valid": 9804,
+      "rows_malformed": 28,
+      "malformed_raw_labels": {
+        "": 27,
+        "snopes": 1
+      },
+      "labels": {
+        "true": 5078,
+        "false": 3001,
+        "mixture": 1434,
+        "unproven": 291
+      },
+      "label_pct": {
+        "true": 51.8,
+        "false": 30.61,
+        "mixture": 14.63,
+        "unproven": 2.97
+      },
+      "missing_in_valid_rows": {
+        "claim_id": 0,
+        "claim": 0,
+        "date_published": 1934,
+        "explanation": 0,
+        "fact_checkers": 2222,
+        "main_text": 0,
+        "sources": 4551,
+        "label": 0,
+        "subjects": 773
+      },
+      "duplicate_claim_id_within": 0,
+      "duplicate_claim_text_within": 2,
+      "duplicate_main_text_within": 217,
+      "words": {
+        "claim": {
+          "n": 9804,
+          "mean": 13.6,
+          "std": 7.7,
+          "min": 3,
+          "p05": 6.0,
+          "p25": 8.0,
+          "median": 11.0,
+          "p75": 17.0,
+          "p95": 29.0,
+          "max": 85
+        },
+        "main_text": {
+          "n": 9804,
+          "mean": 713.8,
+          "std": 512.5,
+          "min": 62,
+          "p05": 117.15000000000003,
+          "p25": 378.0,
+          "median": 608.0,
+          "p75": 916.0,
+          "p95": 1626.7000000000007,
+          "max": 7067
+        },
+        "explanation": {
+          "n": 9804,
+          "mean": 78.1,
+          "std": 89.9,
+          "min": 2,
+          "p05": 10.0,
+          "p25": 25.0,
+          "median": 38.0,
+          "p75": 93.0,
+          "p95": 281.0,
+          "max": 671
+        },
+        "main_text_with_sources": {
+          "n": 5253,
+          "mean": 806.0,
+          "std": 518.9,
+          "min": 66,
+          "p05": 164.0,
+          "p25": 478.0,
+          "median": 732.0,
+          "p75": 1009.0,
+          "p95": 1681.3999999999996,
+          "max": 6518
+        },
+        "main_text_without_sources": {
+          "n": 4551,
+          "mean": 607.4,
+          "std": 483.8,
+          "min": 62,
+          "p05": 109.0,
+          "p25": 323.0,
+          "median": 484.0,
+          "p75": 751.5,
+          "p95": 1519.5,
+          "max": 7067
+        }
+      },
+      "replacement_char_rate_main_text": 0.0
+    },
+    "dev": {
+      "rows_parsed": 1221,
+      "rows_valid": 1214,
+      "rows_malformed": 7,
+      "malformed_raw_labels": {
+        "": 6,
+        "National, Candidate Biography, Donald Tr": 1
+      },
+      "labels": {
+        "true": 629,
+        "false": 380,
+        "mixture": 164,
+        "unproven": 41
+      },
+      "label_pct": {
+        "true": 51.81,
+        "false": 31.3,
+        "mixture": 13.51,
+        "unproven": 3.38
+      },
+      "missing_in_valid_rows": {
+        "claim_id": 0,
+        "claim": 0,
+        "date_published": 243,
+        "explanation": 0,
+        "fact_checkers": 272,
+        "main_text": 0,
+        "sources": 573,
+        "label": 0,
+        "subjects": 84
+      },
+      "duplicate_claim_id_within": 0,
+      "duplicate_claim_text_within": 0,
+      "duplicate_main_text_within": 5,
+      "words": {
+        "claim": {
+          "n": 1214,
+          "mean": 13.3,
+          "std": 7.0,
+          "min": 4,
+          "p05": 6.0,
+          "p25": 9.0,
+          "median": 11.0,
+          "p75": 17.0,
+          "p95": 27.0,
+          "max": 67
+        },
+        "main_text": {
+          "n": 1214,
+          "mean": 708.4,
+          "std": 479.5,
+          "min": 69,
+          "p05": 111.0,
+          "p25": 394.25,
+          "median": 614.5,
+          "p75": 904.75,
+          "p95": 1526.0499999999997,
+          "max": 4665
+        },
+        "explanation": {
+          "n": 1214,
+          "mean": 76.4,
+          "std": 90.0,
+          "min": 3,
+          "p05": 10.0,
+          "p25": 27.0,
+          "median": 38.0,
+          "p75": 84.75,
+          "p95": 274.3499999999999,
+          "max": 628
+        },
+        "main_text_with_sources": {
+          "n": 641,
+          "mean": 780.0,
+          "std": 475.1,
+          "min": 69,
+          "p05": 125.0,
+          "p25": 483.0,
+          "median": 726.0,
+          "p75": 976.0,
+          "p95": 1528.0,
+          "max": 4665
+        },
+        "main_text_without_sources": {
+          "n": 573,
+          "mean": 628.2,
+          "std": 472.1,
+          "min": 78,
+          "p05": 108.6,
+          "p25": 344.0,
+          "median": 510.0,
+          "p75": 761.0,
+          "p95": 1456.5999999999995,
+          "max": 3581
+        }
+      },
+      "replacement_char_rate_main_text": 0.0
+    },
+    "test": {
+      "rows_parsed": 1235,
+      "rows_valid": 1233,
+      "rows_malformed": 2,
+      "malformed_raw_labels": {
+        "": 2
+      },
+      "labels": {
+        "true": 599,
+        "false": 388,
+        "mixture": 201,
+        "unproven": 45
+      },
+      "label_pct": {
+        "true": 48.58,
+        "false": 31.47,
+        "mixture": 16.3,
+        "unproven": 3.65
+      },
+      "missing_in_valid_rows": {
+        "claim_id": 0,
+        "claim": 0,
+        "date_published": 227,
+        "explanation": 0,
+        "fact_checkers": 250,
+        "main_text": 0,
+        "sources": 582,
+        "label": 0,
+        "subjects": 64
+      },
+      "duplicate_claim_id_within": 0,
+      "duplicate_claim_text_within": 0,
+      "duplicate_main_text_within": 4,
+      "words": {
+        "claim": {
+          "n": 1233,
+          "mean": 13.8,
+          "std": 7.4,
+          "min": 4,
+          "p05": 6.0,
+          "p25": 9.0,
+          "median": 11.0,
+          "p75": 17.0,
+          "p95": 29.0,
+          "max": 71
+        },
+        "main_text": {
+          "n": 1233,
+          "mean": 717.6,
+          "std": 501.3,
+          "min": 69,
+          "p05": 115.6,
+          "p25": 385.0,
+          "median": 619.0,
+          "p75": 923.0,
+          "p95": 1665.3999999999999,
+          "max": 4164
+        },
+        "explanation": {
+          "n": 1233,
+          "mean": 76.5,
+          "std": 88.8,
+          "min": 5,
+          "p05": 10.0,
+          "p25": 24.0,
+          "median": 37.0,
+          "p75": 89.0,
+          "p95": 282.0,
+          "max": 567
+        },
+        "main_text_with_sources": {
+          "n": 651,
+          "mean": 793.3,
+          "std": 476.2,
+          "min": 69,
+          "p05": 207.0,
+          "p25": 487.0,
+          "median": 714.0,
+          "p75": 995.0,
+          "p95": 1607.0,
+          "max": 4164
+        },
+        "main_text_without_sources": {
+          "n": 582,
+          "mean": 632.8,
+          "std": 515.3,
+          "min": 70,
+          "p05": 104.0,
+          "p25": 298.0,
+          "median": 507.5,
+          "p75": 767.0,
+          "p95": 1773.3499999999976,
+          "max": 3397
+        }
+      },
+      "replacement_char_rate_main_text": 0.0
+    }
+  },
+  "pooled": {
+    "rows_valid": 12251,
+    "labels": {
+      "true": 6306,
+      "false": 3769,
+      "mixture": 1799,
+      "unproven": 377
+    },
+    "records_without_sources": 5706,
+    "words_main_text": {
+      "n": 12251,
+      "mean": 713.6,
+      "std": 508.2,
+      "min": 62,
+      "p05": 116.0,
+      "p25": 380.5,
+      "median": 610.0,
+      "p75": 915.5,
+      "p95": 1619.0,
+      "max": 7067
+    },
+    "words_main_text_without_sources": {
+      "n": 5706,
+      "mean": 612.1,
+      "std": 486.0,
+      "min": 62,
+      "p05": 108.0,
+      "p25": 322.0,
+      "median": 490.0,
+      "p75": 755.0,
+      "p95": 1529.0,
+      "max": 7067
+    },
+    "label_by_source_availability": {
+      "has_sources": {
+        "false": 2474,
+        "mixture": 1086,
+        "true": 2782,
+        "unproven": 203
+      },
+      "no_sources": {
+        "false": 1295,
+        "mixture": 713,
+        "true": 3524,
+        "unproven": 174
+      }
+    },
+    "label_by_fact_checker_missing": {
+      "has_fact_checker": {
+        "false": 3368,
+        "mixture": 1456,
+        "true": 4306,
+        "unproven": 377
+      },
+      "no_fact_checker": {
+        "false": 401,
+        "mixture": 343,
+        "true": 2000,
+        "unproven": 0
+      }
+    },
+    "source_urls": {
+      "total": 55162,
+      "malformed": 2318,
+      "unique": 44737,
+      "top_domains": [
+        [
+          "truthorfiction.com",
+          3979
+        ],
+        [
+          "twitter.com",
+          3335
+        ],
+        [
+          "facebook.com",
+          2058
+        ],
+        [
+          "politifact.com",
+          1515
+        ],
+        [
+          "reddit.com",
+          1236
+        ],
+        [
+          "cdc.gov",
+          1160
+        ],
+        [
+          "healthnewsreview.org",
+          1058
+        ],
+        [
+          "snopes.com",
+          783
+        ],
+        [
+          "linkedin.com",
+          767
+        ],
+        [
+          "nytimes.com",
+          756
+        ],
+        [
+          "washingtonpost.com",
+          719
+        ],
+        [
+          "api.whatsapp.com",
+          686
+        ],
+        [
+          "ncbi.nlm.nih.gov",
+          555
+        ],
+        [
+          "youtube.com",
+          541
+        ],
+        [
+          "docs.google.com",
+          499
+        ],
+        [
+          "t.co",
+          470
+        ],
+        [
+          "who.int",
+          458
+        ],
+        [
+          "factcheck.org",
+          369
+        ],
+        [
+          "whitehouse.gov",
+          361
+        ],
+        [
+          "vk.ovg.ox.ac.uk",
+          342
+        ],
+        [
+          "web.archive.org",
+          333
+        ],
+        [
+          "cnn.com",
+          323
+        ],
+        [
+          "nhs.uk",
+          294
+        ],
+        [
+          "archive.fo",
+          287
+        ],
+        [
+          "politico.com",
+          221
+        ]
+      ]
+    },
+    "fact_checkers": {
+      "unique": 1687,
+      "top": [
+        [
+          "MD",
+          927
+        ],
+        [
+          "Kim LaCapria",
+          697
+        ],
+        [
+          "Kathlyn Stone",
+          540
+        ],
+        [
+          "David Mikkelson",
+          520
+        ],
+        [
+          "Joy Victory",
+          336
+        ],
+        [
+          "Dan Evon",
+          325
+        ],
+        [
+          "Rich Buhler & Staff",
+          312
+        ],
+        [
+          "MS",
+          288
+        ],
+        [
+          "Louis Jacobson",
+          246
+        ],
+        [
+          "Kevin Lomangino",
+          241
+        ],
+        [
+          "MPH",
+          227
+        ],
+        [
+          "Dan MacGuill",
+          224
+        ],
+        [
+          "PhD",
+          223
+        ],
+        [
+          "Alex Kasprak",
+          212
+        ],
+        [
+          "Bethania Palma",
+          171
+        ],
+        [
+          "Snopes Staff",
+          157
+        ],
+        [
+          "Jon Greenberg",
+          154
+        ],
+        [
+          "W. Gardner Selby",
+          147
+        ],
+        [
+          "Arturo Garcia",
+          141
+        ],
+        [
+          "Tom Kertscher",
+          134
+        ],
+        [
+          "Matt Shipman",
+          131
+        ],
+        [
+          "Kate Kelland",
+          128
+        ],
+        [
+          "Harold J. DeMonaco",
+          119
+        ],
+        [
+          "MA",
+          111
+        ],
+        [
+          "Mary Chris Jaklevic",
+          109
+        ],
+        [
+          "David Emery",
+          108
+        ],
+        [
+          "Doug Campos-Outcalt",
+          107
+        ],
+        [
+          "MPA",
+          107
+        ],
+        [
+          "Amy Sherman",
+          106
+        ],
+        [
+          "Susan Molchan",
+          100
+        ]
+      ]
+    },
+    "subjects": {
+      "unique": 6082,
+      "top": [
+        [
+          "health",
+          1750
+        ],
+        [
+          "health news",
+          1544
+        ],
+        [
+          "general news",
+          1163
+        ],
+        [
+          "politics",
+          847
+        ],
+        [
+          "public health",
+          676
+        ],
+        [
+          "national",
+          621
+        ],
+        [
+          "environment",
+          590
+        ],
+        [
+          "health care",
+          580
+        ],
+        [
+          "fact checks",
+          465
+        ],
+        [
+          "coronavirus",
+          462
+        ],
+        [
+          "u.s. news",
+          436
+        ],
+        [
+          "ap top news",
+          394
+        ],
+        [
+          "science",
+          371
+        ],
+        [
+          "medical",
+          364
+        ],
+        [
+          "donald trump",
+          326
+        ],
+        [
+          "texas",
+          304
+        ],
+        [
+          "viral content",
+          280
+        ],
+        [
+          "florida",
+          278
+        ],
+        [
+          "business",
+          274
+        ],
+        [
+          "crime",
+          272
+        ],
+        [
+          "facebook fact-checks",
+          264
+        ],
+        [
+          "north america",
+          248
+        ],
+        [
+          "abortion",
+          247
+        ],
+        [
+          "cancer",
+          230
+        ],
+        [
+          "international news",
+          230
+        ],
+        [
+          "facebook posts",
+          221
+        ],
+        [
+          "wisconsin",
+          221
+        ],
+        [
+          "virus outbreak",
+          218
+        ],
+        [
+          "junk news",
+          214
+        ],
+        [
+          "covid-19",
+          210
+        ],
+        [
+          "punditfact",
+          199
+        ],
+        [
+          "georgia",
+          160
+        ],
+        [
+          "marijuana",
+          152
+        ],
+        [
+          "mental health",
+          151
+        ],
+        [
+          "entertainment",
+          150
+        ],
+        [
+          "fauxtography",
+          146
+        ],
+        [
+          "immigration",
+          145
+        ],
+        [
+          "europe",
+          145
+        ],
+        [
+          "science news",
+          145
+        ],
+        [
+          "disinformation",
+          142
+        ]
+      ]
+    }
+  },
+  "leakage": {
+    "exact_claim_overlap": {
+      "train&dev": 0,
+      "train&test": 2,
+      "dev&test": 1
+    },
+    "claim_id_overlap": {
+      "train&dev": 0,
+      "train&test": 0,
+      "dev&test": 0
+    },
+    "main_text_overlap": {
+      "train&dev": 44,
+      "train&test": 41,
+      "dev&test": 9
+    },
+    "explanation_overlap": {
+      "train&dev": 33,
+      "train&test": 34,
+      "dev&test": 4
+    },
+    "source_url_overlap": {
+      "train&dev": 755,
+      "train&test": 1006,
+      "dev&test": 333
+    },
+    "near_duplicate_claim_pairs_cos>=0.9": {
+      "dev&test": 2,
+      "train&dev": 2,
+      "train&test": 2
+    },
+    "test_examples_with_near_duplicate_elsewhere": 4,
+    "near_duplicate_label_agreement": 0.833,
+    "verdict_phrases_in_main_text": {
+      "train": {
+        "we_rate": 0.0011219910240718074,
+        "our_ruling": 0.08333333333333333,
+        "rating_label": 0.0005099959200326398,
+        "truth_o_meter": 0.009791921664626682,
+        "pants_on_fire": 0.0015299877600979193,
+        "half_true": 0.0030599755201958386,
+        "mostly_tf": 0.0010199918400652795,
+        "claim_is_tf": 0.0027539779681762548,
+        "verdict_word": 0.007241942064463484,
+        "any": 0.10444716442268462
+      },
+      "dev": {
+        "we_rate": 0.10049423393739704,
+        "our_ruling": 0.09555189456342669,
+        "rating_label": 0.0008237232289950577,
+        "truth_o_meter": 0.009060955518945634,
+        "pants_on_fire": 0.0008237232289950577,
+        "half_true": 0.002471169686985173,
+        "mostly_tf": 0.004118616144975288,
+        "claim_is_tf": 0.006589785831960461,
+        "verdict_word": 0.002471169686985173,
+        "any": 0.15074135090609556
+      },
+      "test": {
+        "we_rate": 0.0373073803730738,
+        "our_ruling": 0.0786699107866991,
+        "rating_label": 0.0008110300081103001,
+        "truth_o_meter": 0.008921330089213302,
+        "pants_on_fire": 0.0016220600162206002,
+        "half_true": 0.0008110300081103001,
+        "mostly_tf": 0.0040551500405515,
+        "claim_is_tf": 0.0032441200324412004,
+        "verdict_word": 0.008110300081103,
+        "any": 0.12570965125709652
+      }
+    },
+    "verdict_phrases_by_label": {
+      "true": {
+        "we_rate": 0.006660323501427212,
+        "our_ruling": 0.05011100539169045,
+        "rating_label": 0.0001585791309863622,
+        "truth_o_meter": 0.0045987947986045035,
+        "pants_on_fire": 0.0,
+        "half_true": 0.0012686330478908975,
+        "mostly_tf": 0.0006343165239454488,
+        "claim_is_tf": 0.0019029495718363464,
+        "verdict_word": 0.007611798287345386,
+        "any": 0.06692039327624484
+      },
+      "false": {
+        "we_rate": 0.02945078270098169,
+        "our_ruling": 0.13504908463783497,
+        "rating_label": 0.0010612894667020429,
+        "truth_o_meter": 0.01804192093393473,
+        "pants_on_fire": 0.004510480233483683,
+        "half_true": 0.0058370920668612365,
+        "mostly_tf": 0.0018572565667285751,
+        "claim_is_tf": 0.0050411249668347044,
+        "verdict_word": 0.0058370920668612365,
+        "any": 0.17935791987264527
+      },
+      "mixture": {
+        "we_rate": 0.013896609227348526,
+        "our_ruling": 0.11395219566425792,
+        "rating_label": 0.0011117287381878821,
+        "truth_o_meter": 0.011673151750972763,
+        "pants_on_fire": 0.0005558643690939411,
+        "half_true": 0.0022234574763757642,
+        "mostly_tf": 0.0038910505836575876,
+        "claim_is_tf": 0.0022234574763757642,
+        "verdict_word": 0.006670372429127293,
+        "any": 0.1423012784880489
+      },
+      "unproven": {
+        "we_rate": 0.002652519893899204,
+        "our_ruling": 0.0,
+        "rating_label": 0.0,
+        "truth_o_meter": 0.0,
+        "pants_on_fire": 0.0,
+        "half_true": 0.0,
+        "mostly_tf": 0.005305039787798408,
+        "claim_is_tf": 0.010610079575596816,
+        "verdict_word": 0.005305039787798408,
+        "any": 0.021220159151193633
+      }
+    },
+    "explanation_verbatim_in_main_text": 0.0468,
+    "explanation_is_lede_of_main_text": 0.0051,
+    "explanation_is_lede_by_label": {
+      "false": 0.0096,
+      "mixture": 0.0106,
+      "true": 0.0,
+      "unproven": 0.0186
+    },
+    "claim_verbatim_in_main_text": 0.0562
+  },
+  "scifact": {
+    "train": {
+      "claims": 809,
+      "claim_level_labels": {
+        "NEI": 304,
+        "REFUTES": 173,
+        "SUPPORTS": 332
+      }
+    },
+    "dev": {
+      "claims": 300,
+      "claim_level_labels": {
+        "NEI": 112,
+        "SUPPORTS": 124,
+        "REFUTES": 64
+      }
+    },
+    "test": {
+      "claims": 300,
+      "claim_level_labels": {
+        "unlabelled": 300
+      }
+    },
+    "corpus_abstracts": 5183
+  }
+}

@@ -1,0 +1,85 @@
+# Experiment matrix. Systems/controls frozen at Gate 2 (2026-10-27); budgets frozen at Gate 3 (docs/EXPERIMENT_PROTOCOL.md).
+# Amendment 2 (2026-10-29): leak-free development split, SciFact-Open as second held-out set, M1 pooling as in the
+# proposal (M1-aligned kept as ablation), full metric set. status: planned | smoke | done
+model_profile: qwen3_8b_vllm
+seed: 13
+datasets:
+  pubhealth: {eval_split: test, dev_split: dev, labels: 4-way}
+  scifact:   {eval_splits: [dev, scifact_open], dev_split: prompt_dev, labels: 3-way}
+reference_baselines:          # non-LLM, PUBHEALTH only
+  - {id: majority,               status: done}
+  - {id: claim_id_bins,          status: done, note: leakage probe, never a real system}
+  - {id: claim_only_tfidf_lr,    status: done}
+  - {id: masked_article_tfidf_lr, status: done}
+  - {id: metadata_tfidf_lr,      status: done}
+systems:
+  - {id: B0,   run: b0,   rq: [RQ1], evidence: none,                                      status: smoke}
+  - {id: B1,   run: b1,   rq: [RQ1], evidence: "hybrid(claim) top-5",                      status: smoke}
+  - {id: B1-9, run: b1_9, rq: [RQ2], evidence: "top-k matched to M2 max budget (9)",       status: smoke}
+  - {id: B2,   run: b2,   rq: [RQ1], evidence: "sub-question rankings fused by RRF, 5 total", status: smoke}
+  - {id: M1,   run: m1,   rq: [RQ1, RQ2], evidence: "obligation rankings fused by RRF, 5 total; every obligation audited on all 5", status: smoke}
+  - {id: M2,   run: m2,   rq: [RQ2], evidence: "M1 + <=2 rounds x <=2 new (RRF) + consolidation (amendment 1)", status: smoke}
+  - {id: M3,   rq: [],    optional: true,                                                 status: planned}
+added_controls:              # from docs/LITERATURE_REVIEW.md section 5.4; approved and frozen 2026-10-27
+  - {id: B1-SC,        run: b1_sc,        rq: [RQ1], evidence: "as B1, self-consistency, token-matched", status: smoke}
+  - {id: M1-shared,    run: m1_shared,    rq: [RQ1], evidence: "obligations audited on shared claim-level top-5", status: smoke}
+  - {id: M1-untyped,   run: m1_untyped,   rq: [RQ1], evidence: "untyped atomic-fact decomposition", status: smoke}
+  - {id: M1-LLMagg,    run: m1_llmagg,    rq: [RQ1], evidence: "as M1, LLM aggregation over ledger", status: smoke}
+  - {id: M2-random,    run: m2_random,    rq: [RQ2], evidence: "re-retrieve for random obligations, M2 caps", status: smoke}
+  - {id: M2-claimiter, run: m2_claimiter, rq: [RQ2], evidence: "claim-level iterative retrieval, M2 caps", status: smoke}
+  - {id: M1-aligned,   run: m1_aligned,   rq: [RQ1], optional: true, status: smoke,
+     evidence: "amendment 2 ablation: original M1 (round-robin pool; each obligation audited only on its own top-5 within the pool)"}
+# Paired comparisons reported by scripts/compare_systems.py as b - a (positive = b better); Holm-adjusted together.
+comparisons:
+  - {a: b0,           b: b1, rq: RQ1, question: "does retrieval help? (RAG capability)"}
+  - {a: b1,           b: b2, rq: RQ1, question: "do sub-questions help over direct RAG?"}
+  - {a: b1,           b: m1, rq: RQ1, question: "do obligations help over direct RAG?"}
+  - {a: b2,           b: m1, rq: RQ1, question: "do obligations help over sub-questions? (reasoning capability)"}
+  - {a: b1_sc,        b: m1, rq: RQ1, question: "is M1 better than spending compute on self-consistency?"}
+  - {a: m1_shared,    b: m1, rq: RQ1, question: "does per-obligation retrieval matter?"}
+  - {a: m1_aligned,   b: m1, rq: RQ1, question: "whole pool vs per-obligation subsets (ablation)"}
+  - {a: m1_untyped,   b: m1, rq: RQ1, question: "does obligation typing matter?"}
+  - {a: m1_llmagg,    b: m1, rq: RQ1, question: "deterministic rule vs LLM aggregation"}
+  - {a: m1,           b: m2, rq: RQ2, question: "does targeted re-retrieval help? (agentic capability)"}
+  - {a: b1_9,         b: m2, rq: RQ2, question: "targeted retrieval vs simply more abstracts"}
+  - {a: m2_random,    b: m2, rq: RQ2, question: "does targeting by status matter?"}
+  - {a: m2_claimiter, b: m2, rq: RQ2, question: "obligation-level vs claim-level iteration"}
+# Amendment ablations, planned at Gate 3 (2026-10-30) before any held-out run of them; Holm-adjusted as a
+# separate family so the comparisons above keep their frozen adjustment. Run ids: <tag>_m2_noconsol,
+# <tag>_m2_claimfollow (SYSTEMS="m2:noconsol m2:claimfollow" in scripts/ada/run_scifact_vllm.sh).
+ablation_comparisons:
+  - {a: m2_noconsol,    b: m2, rq: RQ2, question: "does the consolidation audit help? (amendment 1)"}
+  - {a: m2_claimfollow, b: m2, rq: RQ2, question: "does fusing in the bare follow-up query help? (amendment 3)"}
+# Amendment 5 (2026-10-30, post hoc, docs/EXPERIMENT_PROTOCOL.md): the stored ledgers re-scored under the anchored
+# contradiction rule (scifact_v1_anchored; run ids <tag>_<system>_anch, scripts/rescore_ledgers.py) and the
+# ledger-as-check fallback (<tag>_b1_checked, <tag>_b1_checked_anch). Chosen on prompt_dev; a separate Holm family.
+amendment_comparisons:
+  - {a: m1,   b: m1_anch,         rq: RQ1, question: "does counting only anchored contradictions help M1?"}
+  - {a: b1,   b: m1_anch,         rq: RQ1, question: "H1 under the amended rule: obligations vs direct RAG"}
+  - {a: b2,   b: m1_anch,         rq: RQ1, question: "H1 under the amended rule: obligations vs sub-questions"}
+  - {a: m2,   b: m2_anch,         rq: RQ2, question: "does counting only anchored contradictions help M2?"}
+  - {a: m1_anch, b: m2_anch,      rq: RQ2, question: "H2 under the amended rule: does targeted re-retrieval help?"}
+  - {a: b1,   b: b1_checked,      rq: RQ1, question: "fallback: B1 with M1 as a check (NEI where they disagree)"}
+  - {a: b1,   b: b1_checked_anch, rq: RQ1, question: "fallback with the amended M1 as the check"}
+# Amendment 6 (2026-10-30, post hoc): is the ledger a better check on B1 than a second opinion without a ledger?
+# Run ids <tag>_b1_checked_b2, <tag>_b1_checked_b1_9 (scripts/rescore_ledgers.py); veto precision against a random
+# veto of the same size in scripts/veto_analysis.py. A fourth Holm family.
+check_comparisons:
+  - {a: b1_checked_b2,   b: b1_checked, rq: RQ1, question: "is the ledger a better check than sub-question RAG?"}
+  - {a: b1_checked_b1_9, b: b1_checked, rq: RQ1, question: "is the ledger a better check than B1 with more evidence?"}
+metrics:                     # src/oblig/evaluation/scifact.py; one metric per capability marked
+  task: [claim-level macro-F1 with 95% bootstrap CI (primary), accuracy, per-class P/R/F1, confusion matrix]
+  rag: [SciFact sentence-level selection+label F1 (capability metric), abstract-level label+rationale F1, gold-abstract recall of shown evidence]
+  reasoning: [obligation-status accuracy vs two annotators on 50 dev claims (capability metric; scripts/export_annotation.py, score_annotation.py), ledger citation grounding]
+  agentic: [loop gain: delta macro-F1 and delta gold-abstract recall, first pass -> iterated, per extra LLM call (capability metric), flips, status transitions]
+  safety: [unsupported-verdict rate on gold-NEI claims (proposal), polarity errors, ungrounded verdicts, invalid outputs]
+  cost: [LLM calls, prompt and completion tokens per claim, latency]
+  robustness: [minimal pairs (31 on dev): pair accuracy, contrast consistency]
+ablations:
+  - {name: deterministic vs LLM aggregation, systems: [M1]}
+  - {name: passage vs whole-article retrieval, dataset: pubhealth}
+  - {name: bm25 vs dense vs hybrid}
+  - {name: with vs without qualifier obligations, systems: [M1]}
+  - {name: M2 with vs without consolidation audit, systems: [M2], note: "amendment 1, 2026-10-27"}
+  - {name: whole pool vs per-obligation subsets, systems: [M1, M1-aligned], note: "amendment 2, 2026-10-29"}
+  - {name: fused vs claim-appended follow-up search, systems: [M2], note: "amendment 3, 2026-10-29"}

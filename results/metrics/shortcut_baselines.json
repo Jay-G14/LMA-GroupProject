@@ -1,0 +1,55 @@
+{
+  "majority": {
+    "dev": {
+      "accuracy": 0.5181,
+      "macro_f1": 0.1706
+    },
+    "test": {
+      "accuracy": 0.4858,
+      "macro_f1": 0.1635
+    }
+  },
+  "claim_id_bins": {
+    "dev": {
+      "accuracy": 0.7348,
+      "macro_f1": 0.6224
+    },
+    "test": {
+      "accuracy": 0.6837,
+      "macro_f1": 0.594
+    }
+  },
+  "claim_only_tfidf_lr": {
+    "C": 0.3,
+    "dev": {
+      "accuracy": 0.6046,
+      "macro_f1": 0.4828
+    },
+    "test": {
+      "accuracy": 0.5839,
+      "macro_f1": 0.4815
+    }
+  },
+  "masked_main_text_tfidf_lr": {
+    "C": 3,
+    "dev": {
+      "accuracy": 0.7405,
+      "macro_f1": 0.6049
+    },
+    "test": {
+      "accuracy": 0.7032,
+      "macro_f1": 0.576
+    }
+  },
+  "metadata_tfidf_lr": {
+    "C": 1,
+    "dev": {
+      "accuracy": 0.6252,
+      "macro_f1": 0.5094
+    },
+    "test": {
+      "accuracy": 0.5912,
+      "macro_f1": 0.4952
+    }
+  }
+}

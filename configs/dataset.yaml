@@ -1,0 +1,16 @@
+pubhealth:
+  root: data/PUBHEALTH
+  splits: [train, dev, test]          # official splits, unchanged
+  labels: [true, false, mixture, unproven]
+  model_inputs: [claim]               # evidence comes only via retrieval over masked main_text
+  forbidden_inputs: [label, explanation, claim_id, fact_checkers, subjects, sources, date_published]
+scifact:
+  root: data/raw/scifact/data
+  labels: [SUPPORTS, REFUTES, NEI]
+  note: claims_test.jsonl is unlabelled; claims_dev.jsonl is held-out evaluation set 1
+  development_splits: data/splits/scifact_leakfree_v1.json   # prompt_dev (199) / fewshot_pool (186), leak-free
+scifact_open:
+  root: data/raw/scifact_open           # claim files only; labels for the hidden SciFact test claims
+  setting: 5k                           # evidence restricted to the 5,183-abstract SciFact corpus
+  labels: [SUPPORTS, REFUTES, NEI]      # 278 claims (97 / 96 / 85); claim 158 excluded (conflicting labels)
+  note: held-out evaluation set 2; only citation evidence has gold rationale sentences

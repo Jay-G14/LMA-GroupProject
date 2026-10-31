@@ -1,0 +1,29 @@
+# LLM profiles. Controlled comparisons must all use one profile.
+qwen3_8b_vllm:            # target model from the proposal; needs a GPU server (scripts/ada/run_scifact_vllm.sh)
+  backend: openai
+  model: Qwen/Qwen3-8B     # served name; weights: Qwen/Qwen3-8B-AWQ (official 4-bit release) on one RTX 2080 Ti
+  revision: 4da05a8edb55c6046cce958586c33b61da07bb79   # Qwen/Qwen3-8B-AWQ commit used on Ada
+  base_url: http://localhost:8000/v1
+  temperature: 0.0
+  top_p: 1.0
+  max_tokens: 512
+  seed: 13
+  extra:
+    chat_template_kwargs: {enable_thinking: false}   # proposal: non-thinking mode
+    structured_output: true                          # output constrained to each call's JSON schema (vLLM)
+
+smoke_qwen25_05b_cpu:     # pipeline smoke tests only; never used for reported results
+  backend: hf
+  model: Qwen/Qwen2.5-0.5B-Instruct
+  revision: null
+  temperature: 0.0
+  max_tokens: 160
+  seed: 13
+
+mock:                     # deterministic stub: always "true", cites first passage
+  backend: mock
+  model: mock
+
+mock_scifact:             # role-routed SciFact stub (src/oblig/llm/mock_scifact.py); pipeline tests only
+  backend: mock
+  model: mock_scifact
